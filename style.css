@@ -152,7 +152,3 @@ h3 {
     height: 0.1px;
     position: absolute;
 }
-
-button {
-    touch-action: pan-x, pan-y;
-}
