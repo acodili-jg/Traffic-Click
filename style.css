@@ -1,0 +1,154 @@
+:root {
+    --color-background: #f0f0f0;
+}
+
+* {
+    margin: 0;
+    padding: 0;
+
+    font-family: Arial, sans-serif;
+}
+
+html, body {
+    width: 100%;
+    height: 100%;
+
+    background: var(--color-background);
+    text-align: center;
+}
+
+html {
+    display: flex;
+    flex-direction: column;
+}
+
+body {
+    display: grid;
+    grid-template-columns:
+        [excessstart]
+        1fr
+        [content-start]
+        minmax(auto, 60ch)
+        [content-end]
+        1fr
+        [excessend];
+    grid-template-rows: auto 1fr auto;
+}
+
+.excess  { grid-column:   excessstart / excessend;   }
+/*.wide    { grid-column:    wide-start / wide-end;    }*/
+.content { grid-column: content-start / content-end; }
+
+/* Header bar */
+.header {
+    background: #333;
+    color: white;
+    padding: 1em;
+}
+
+/* Main view area */
+main {
+    display: grid;
+    grid-template-columns: subgrid;
+    grid-column: excessstart / excessend
+    overflow-y: auto;
+}
+
+h3 {
+    /*margin-block-start: 1em;*/
+}
+
+.view {
+    overflow-x: hidden;
+    overflow-y: auto;
+}
+
+.counter {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    padding: 0 1.25em 1.25em 1.25em;
+}
+
+#counterHeader {
+    display: grid;
+    grid-template-columns: subgrid;
+    padding: 0.5em;
+    grid-gap: 0 1em;
+    background: var(--color-background);
+    position: sticky;
+    top: 0;
+}
+
+.counter h3, #counterHeader, #panel {
+    grid-column: 1 / span 2;
+}
+
+#panel {
+    display: grid;
+    grid-template-columns: subgrid;
+    grid-gap: 0.5em 1em;
+}
+
+.counter div {
+    & :first-child { border-radius: 0.5em 0 0 0.5em; }
+    & :last-child { border-radius: 0 0.5em 0.5em 0; }
+
+    display: flex;
+    justify-content: center;
+}
+
+.counter button {
+    &.plus        { flex: 1; }
+
+    &.red        { background: #AF4C50; }
+    &.red:hover  { background: #a04549; }
+    &.red:active { background: #503020; }
+
+    &.green        { background: #4CAF50; }
+    &.green:hover  { background: #45a049; }
+    &.green:active { background: #305020; }
+
+    &.blue        { background: #4C70AF; }
+    &.blue:hover  { background: #4569a0; }
+    &.blue:active { background: #305050; }
+
+    font-size: 1.125em;
+    border: none;
+
+    color: white;
+    cursor: pointer;
+    padding: 1.25em 1em;
+    transition: background 0.1s;
+}
+
+.nav, .nav div {
+    display: flex;
+    justify-content: space-around;
+    background: #333;
+}
+
+.nav button, .nav div {
+    &:hover { background: #222; }
+    &:active { background: #555; }
+
+    flex: 1;
+    padding: 0.75em;
+    background: #333;
+    color: white;
+    border: none;
+    font-size: 1em;
+}
+.nav div {
+    flex: 1;
+    padding: 0;
+}
+.nav div label {
+    flex: 1;
+    padding: 0.75em;
+}
+.nav input {
+    opacity: 0;
+    width: 0.1px;
+    height: 0.1px;
+    position: absolute;
+}
